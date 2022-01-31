@@ -1,3 +1,5 @@
+import bitstring
+
 
 def encode(message):
     encodedMessage = ""
@@ -26,10 +28,20 @@ def encode(message):
 
 def main():
     while (1):
-        message = "001100110011"
+        message = ""
         while len(message)<1:
             message = input("Enter message to encode: ")
-        print("Encoded message: ", encode(message))
+
+
+        bytesList = bytearray(message, "utf8")
+        binaryMessage = ""
+
+        for byte in bytesList:
+            binary_representation = bin(byte)
+            binaryMessage += binary_representation[2:]
+        
+        print(binaryMessage)
+        print("Encoded message: ", encode(binaryMessage))
         input()
 
 main()
